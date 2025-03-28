@@ -46,7 +46,7 @@ getgenv().FixCrash2 = false -- Turn it On For Hopping Server, Improve Performanc
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
   end
      })   AddButton(Tab1o, {
-     Name = "Redz Hub",
+     Name = "Overgustx2",
     Callback = function()
 	  local Settings = {
   JoinTeam = "Pirates"; -- Pirates/Marines
@@ -55,6 +55,9 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc61
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Overgustx2/Main/refs/heads/main/BloxFruits_25.html"))()
 
+AddButton(Tab1o, {
+     Name = "newredz",
+    Callback = function()
 local Settings = {
   JoinTeam = "Pirates"; -- Pirates/Marines
   Translator = true; -- true/false
