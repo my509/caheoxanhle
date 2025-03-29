@@ -11,7 +11,7 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V
         KeySystem = true,
         Title = "Key System",
         Description = "",
-        KeyLink = "",
+        KeyLink = "https://pastebin.com/h3a77a1p",
         Keys = {"21072010"},
         Notifi = {
         Notifications = true,
