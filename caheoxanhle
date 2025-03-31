@@ -33,8 +33,6 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V
       
 ------ Tab
      local Tab1o = MakeTab({Name = "Script Farm"})
-     
-     local Tab1o = MakeTab({Name = "Script kaitun"})
 
     
 ------- BUTTON
@@ -100,10 +98,10 @@ getgenv().ForceUseWalkSpeedModifier = false --Force turn on Walk Speed Modifier 
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()
   end
    })   AddButton(Tab1o, {
-     Name = "kaitun",
+     Name = "min gaming",
     Callback = function()
 
-loadstring(game:HttpGet("https://api.realaya.xyz/v1/files/l/73mkp0aqyfo4ypy8hvl0nz10lq49fey5.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Min/refs/heads/main/MinXoE"))()
   end
    })   AddButton(Tab1o, {
      Name = "Bắp red",
@@ -116,5 +114,18 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/BapRed/main/
     Callback = function()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Min/refs/heads/main/MinHopBoss"))()
+  end
+   })
+------ Tab
+     local Tab1o = MakeTab({Name = "Script kaitun"})
+
+
+------- BUTTON
+    
+    AddButton(Tab1o, {
+     Name = "kaitun",
+    Callback = function()
+
+loadstring(game:HttpGet("https://api.realaya.xyz/v1/files/l/73mkp0aqyfo4ypy8hvl0nz10lq49fey5.lua"))()
   end
    })
