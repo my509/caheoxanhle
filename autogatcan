@@ -1,0 +1,3 @@
+```getgenv().Team = "Marines"   -- Pirates or Marines
+getgenv().PullLever = false  -- làm nv nch với bia đá , tắt đi nếu làm rồi
+loadstring(game:HttpGet("https://raw.githubusercontent.com/stuckez999/main/refs/heads/main/zushhubgatcan.txt"))()```
