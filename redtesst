@@ -1,0 +1,12 @@
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/daucobonhi/UiRedzV5/refs/heads/main/DemoUi.lua"))();
+
+   local Windows = redzlib:MakeWindow({
+	Title = "Caheoxanhle Ui Redz",
+       Animation = "Script Caheoxanhle redv3"
+	SubTitle = "Caheoxanhle",
+	SaveFolder = "Blox Fruits.lua"
+})
+Windows:AddMinimizeButton({
+  Button = { Image = "rbxassetid://139005297108932", BackgroundTransparency = 0 },
+  Corner = { CornerRadius = UDim.new(0, 6) }
+});
