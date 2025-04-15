@@ -1,0 +1,149 @@
+--[[
+  
+██████╗░██╗░░░██╗░█████╗░██╗░░██╗██████╗░░█████╗░██████╗░██╗░░░██╗
+██╔══██╗██║░░░██║██╔══██╗██║░██╔╝██╔══██╗██╔══██╗██╔══██╗╚██╗░██╔╝
+██║░░██║██║░░░██║██║░░╚═╝█████═╝░██████╦╝███████║██████╦╝░╚████╔╝░
+██║░░██║██║░░░██║██║░░██╗██╔═██╗░██╔══██╗██╔══██║██╔══██╗░░╚██╔╝░░
+██████╔╝╚██████╔╝╚█████╔╝██║░╚██╗██████╦╝██║░░██║██████╦╝░░░██║░░░
+╚═════╝░░╚═════╝░░╚════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░
+         \__ Cảm ơn đã mua và ủng hộ mã nguồn của chúng tôi trên shop ❤️
+]]--
+
+# Truy cập website để trải nghiệm +1000 loại code đã qua crack
+# Code hoàn toàn được crack bằng tool và make lại nếu ai có nhu cầu mua tool liên hệ ad
+
+--// Lưu Ý:
+- Không Được Share Hay Crack Mã Nguồn Này Cho Ai! Nếu Không Bạn Sẽ Bị Ban IP Khỏi Website Vĩnh Viễn!
+- Chúng Tôi Không Nhận Hỗ Trợ Những Mã Nguồn Miễn Phí, Xin Đừng Bảo Vì Sao. Tạo Ticket Hỗ Trợ Của Website Tại: 
+- Nếu Bạn Edit Source Và Up Web Share Nhớ Obfuscate Script. Nếu Bạn Có Tiền Thì Sử Dụng: Lura.Ph, Luarmor.Net | Nếu Bạn Không Có Tiền Thì Dùng: luaobfuscate.com, MoonSec, 77Fuscate,... Nhé!
+\\--
+
+const imageUrls = [
+    "",
+    
+    
+  ];
+  
+  const NameNotify = 'NOTIFY BLOX FRUIT';
+  const DiscordLink = 'url dis';
+  const NameDiscord = 'Caheoxanhle Hub | Blox Fruit';
+  const NameUser = 'caheoxanhle';
+  
+  const themefullmoon = {
+      use: true,
+      name:"🌖 FULL MOON 🌔",
+      "color": 0x4287f5,
+      url:'url webhook'
+    }
+   const thememirage = {
+      use: true,
+      name:"🏝️ MIRAGE ISLAND 🏝️",
+      "color": 0x4287f5,
+      url:'url webhook'
+    }
+  const themeHaki = {
+      use: true,
+      name:"🎨 HAKI LEGENDARY 🎨",
+      "color": 0x4287f5,
+      url:'url webhook'
+    }  
+  const themeSword = {
+      use: true,
+      name:"⚔️ SWORD LEGENDARY ⚔️",
+      "color": 0x4287f5,
+      url:'url webhook'
+    }    
+  const themeBoss = {
+      use: true,
+      name:"👺 BOSS RAID 👺",
+      "color": 0x4287f5,
+      url:'url webhook'
+    }       
+  const themeking = {
+      use: true,
+      name:"👑 KING LEGACY 👑",
+      "color": 0x4287f5,
+      url:'url webhook'
+    }
+  const axios = require('axios');
+  
+  async function _S(theme, fieldsss) {
+    if (!theme.use) {
+      return '';
+    }
+  
+    const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+  
+    const data = {
+      content: null,
+      embeds: [
+        {
+          title: theme.name,
+          description: ``,
+          color: theme.color,
+          fields: fieldsss,
+          author: { name: `${NameNotify}` },
+        image: { url: randomImageUrl },
+        footer: { text: `` },
+        timestamp: new Date().toISOString(),        
+      }
+    ],
+    attachments: []
+  };
+  
+    try {
+      const response = await axios.post(theme.url, data);
+      if (response.status === 204) {
+        console.log('\x1b[31m[SYSTEM]\x1b[32mCheck Speed : ', theme.name);
+      } else {
+        console.log('Http OutPut : ' + response.status);
+      }
+    } catch (error) {
+      console.log('\x1b[31m[SYSTEM]\x1b[32mError OutPut : ' + error.message);
+    }
+  }
+  
+  const { Client } = require('discord.js-selfbot-v13');
+  const DiscordBot = new Client();
+  
+  DiscordBot.on('ready', async () => {
+    console.log(`Console - Start Webhook`);
+  });
+  
+  DiscordBot.on('messageCreate',async (message) => {
+  if (message.channelId == 1085601598555832400) {
+      if (message.embeds) {
+      const data = message.embeds[0].fields;
+      _S(themefullmoon,data)
+   }
+  } else if (message.channelId == 1085601317717811200) {
+      if (message.embeds) {
+      const data = message.embeds[0].fields;
+      _S(thememirage,data)    
+   }
+ } else if (message.channelId == 1088023824555053097) {
+      if (message.embeds) {
+      const data = message.embeds[0].fields;
+      _S(themeHaki,data)    
+   }
+  } else if (message.channelId == 1144623714663682138) {
+      if (message.embeds) {
+      const data = message.embeds[0].fields;
+      _S(themeSword,data)    
+   }
+  } else if (message.channelId == 1197504846459310161) {
+      if (message.embeds) {
+      const data = message.embeds[0].fields;
+      _S(themeBoss,data)    
+   }
+  } else if (message.channelId == 1184516926651768954) {
+      if (message.embeds) {
+      const data = message.embeds[0].fields;
+      _S(themeking,data)    
+      }
+    } 
+  });
+  
+  const token = 'your-token-discord';
+  
+  DiscordBot.login(token);
