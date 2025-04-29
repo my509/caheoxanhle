@@ -1,0 +1,479 @@
+-- discord.gg/umaru
+-- discord.gg/umaru
+-- discord.gg/umaru
+
+local WindUI = (loadstring(game:HttpGet("https://tree-hub.vercel.app/api/UI/WindUI")))();
+local Window = WindUI:CreateWindow({
+	Title = "Relz Hub [ New Version ]",
+	Author = "caheoxanhle",
+	Folder = "RelzHub",
+	Size = UDim2.fromOffset(520, 300),
+	Transparent = true,
+	Theme = "Dark",
+	SideBarWidth = 190,
+	HasOutline = false,
+});
+Window:EditOpenButton({
+	Title = "Open",
+	CornerRadius = UDim.new(0, 10),
+	Draggable = false
+});
+local Tabs = {
+	MainTab = Window:Tab({
+		Title = "Main",
+		Icon = "rbxassetid://10723407389"
+	}),
+	TeleportTab = Window:Tab({
+		Title = "Teleport",
+		Icon = "rbxassetid://10734886004"
+	}),
+	LocalPlayerTab = Window:Tab({
+		Title = "LocalPlayer",
+		Icon = "user"
+	}),
+	PetsTab = Window:Tab({
+		Title = "Pets",
+		Icon = "egg"
+	}),
+	MiscTab = Window:Tab({
+		Title = "Misc",
+		Icon = "layout-grid"
+	}),
+	ServerTab = Window:Tab({
+		Title = "Server",
+		Icon = "server"
+	})
+};
+Window:SelectTab(1);
+_G.Settings = {
+	Main = {
+		["Auto Blow Bubble"] = false,
+		["Auto Sell Bubble"] = false,
+		["Auto Use Potion"] = false,
+		["Auto Use Golden Orb"] = false,
+		["Auto Equip Best Pet"] = false,
+		["Auto Collect Loot"] = false,
+		["Auto Upgrade Mastery"] = false,
+		["Auto Claim Playtime"] = false,
+		["Auto Claim Wheel Spin"] = false,
+		["Auto Wheel Spin"] = false,
+	},
+	Eggs = {
+		["Auto Open Egg"] = false
+	}
+};
+MainSection = Tabs.MainTab:Section({
+    Title = "Main",
+    TextXAlignment = "Left"
+});
+AutoBlowBubbleToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Blow Bubble",
+	Value = _G.Settings.Main["Auto Blow Bubble"],
+	Callback = function(state)
+		_G.Settings.Main["Auto Blow Bubble"] = state;
+	end
+});
+AutoSellBubbleToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Sell Bubble",
+	Value = _G.Settings.Main["Auto Sell Bubble"],
+	Callback = function(state)
+		_G.Settings.Main["Auto Sell Bubble"] = state;
+	end
+});
+AutomaticlySection = Tabs.MainTab:Section({
+    Title = "Automaticly",
+    TextXAlignment = "Left"
+});
+local potionList = {
+	"Coins",
+	"Lucky",
+	"Speed",
+	"Mythic"
+};
+local potionTierList = {
+	1,
+	2,
+	3,
+	4,
+	5,
+	6
+};
+SelectedPotionDropdown = Tabs.MainTab:Dropdown({
+	Title = "Choose Potion",
+	Values = potionList,
+	Value = potionList[1],
+	Callback = function(option)
+		_G.SelectedPotion = option;
+	end
+})
+SelectedPotionTierDropdown = Tabs.MainTab:Dropdown({
+	Title = "Choose Potion Tier",
+	Values = potionTierList,
+	Value = potionTierList[1],
+	Callback = function(option)
+		_G.SelectedPotionTier = option;
+	end
+})
+AutoUsePotionToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Use Potion",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Use Potion"] = state;
+	end
+});
+AutoCollectLootToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Collect Loot",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Collect Loot"] = state;
+	end
+});
+AutoUseBestPetToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Use Best Pet",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Use Best Pet"] = state;
+	end
+});
+AutoClaimPlaytimeToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Claim Playtime",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Claim Playtime"] = state;
+	end
+});
+WheelSpinSection = Tabs.MainTab:Section({
+    Title = "Wheel Spin",
+    TextXAlignment = "Left"
+});
+AutoClaimWheelSpinToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Claim Wheel Spin",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Claim Wheel Spin"] = state;
+	end
+})
+AutoWheelSpinToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Wheel Spin",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Wheel Spin"] = state;
+	end
+})
+spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.Settings.Main["Auto Claim Wheel Spin"] then
+				FrameworkRemote:WaitForChild("Event"):FireServer("ClaimFreeWheelSpin");
+			end
+		end)
+	end
+end)
+spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.Settings.Main["Auto Wheel Spin"] then
+				FrameworkRemote:WaitForChild("Function"):FireServer("WheelSpin");
+				FrameworkRemote:WaitForChild("Event"):FireServer("ClaimWheelSpinQueue");
+			end
+		end)
+	end
+end)
+MasterySection = Tabs.MainTab:Section({
+    Title = "Mastery",
+    TextXAlignment = "Left"
+});
+local masteryList = {
+	"Buffs",
+	"Pets",
+	"Shops"
+}
+SelectedMasteryDropdown = Tabs.MainTab:Dropdown({
+	Title = "Choose Mastery",
+	Values = masteryList,
+	Value = masteryList[1],
+	Callback = function(option)
+		_G.SelectedMastery = option;
+	end
+})
+AutoUpgradeMasteryToggle = Tabs.MainTab:Toggle({
+	Title = "Auto Upgrade Mastery",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Main["Auto Upgrade Mastery"] = state;
+	end
+})
+spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.Settings.Main["Auto Upgrade Mastery"] then
+				FrameworkRemote:WaitForChild("Event"):FireServer("UpgradeMastery", _G.SelectedMastery);
+			end
+		end)
+	end
+end)
+local FrameworkRemote = ((((game:GetService("ReplicatedStorage")):WaitForChild("Shared")):WaitForChild("Framework")):WaitForChild("Network")):WaitForChild("Remote");
+local PickupRemote = (((game:GetService("ReplicatedStorage")):WaitForChild("Remotes")):WaitForChild("Pickups")):WaitForChild("CollectPickup");
+spawn(function()
+	while wait() do
+		if _G.Settings.Main["Auto Collect Loot"] then
+			wait(4);
+			for i, v in pairs((game:GetService("Workspace")).Rendered:GetChildren()) do
+				if v.Name == "Chunker" then
+					for _, loot in pairs(v:GetChildren()) do
+						if string.find(loot.Name, "-") then
+							PickupRemote:FireServer(loot.Name);
+							loot:Destroy();
+						end;
+					end;
+				end;
+			end;
+		end;
+	end;
+end);
+spawn(function()
+	while wait() do
+		if _G.Settings.Main["Auto Use Best Pet"] then
+			wait(10)
+			equipBestPet();
+		end;
+	end;
+end);
+spawn(function()
+	while wait() do
+		if _G.Settings.Main["Auto Use Potion"] then
+			wait(1)
+			usePotion(_G.SelectedPotion, _G.SelectedPotionTier);
+		end;
+	end;
+end);
+spawn(function()
+	while wait() do
+		if _G.Settings.Main["Auto Claim Playtime"] then
+			wait(10)
+			for i = 1, 9 do
+				claimPlaytime(i);
+			end
+		end;
+	end;
+end);
+spawn(function()
+	while wait() do
+		if _G.Settings.Main["Auto Sell Bubble"] then
+			(FrameworkRemote:WaitForChild("Event")):FireServer("SellBubble");
+		end;
+	end;
+end);
+spawn(function()
+	while wait() do
+		if _G.Settings.Main["Auto Blow Bubble"] then
+			(FrameworkRemote:WaitForChild("Event")):FireServer("BlowBubble");
+		end;
+	end;
+end);
+TeleportSection = Tabs.TeleportTab:Section({
+    Title = "Teleport",
+    TextXAlignment = "Left"
+});
+UnlockAllIslandButton = Tabs.TeleportTab:Button({
+	Title = "Unlock All Island",
+	Callback = function()
+		unlockAllIsland();
+	end
+});
+local IslandList = {};
+for i, v in pairs((game:GetService("Workspace")).Worlds["The Overworld"].Islands:GetChildren()) do
+	table.insert(IslandList, v.Name);
+end;
+IslandListDropdown = Tabs.TeleportTab:Dropdown({
+	Title = "Choose Island",
+	Values = IslandList,
+	Value = IslandList[1],
+	Callback = function(option)
+		_G.SelectedIsland = option;
+	end
+});
+TeleportToIslandButton = Tabs.TeleportTab:Button({
+	Title = "Teleport To Island",
+	Callback = function()
+		teleportToIsland(_G.SelectedIsland);
+	end
+});
+function unlockAllIsland()
+	for i, v in pairs((game:GetService("Workspace")).Worlds["The Overworld"].Islands:GetChildren()) do
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Island.UnlockHitbox.CFrame;
+		wait(0.5);
+	end;
+end;
+function teleportToIsland(island)
+	local place = "Workspace.Worlds.The Overworld.Islands." .. island .. ".Island.Portal.Spawn";
+	FrameworkRemote.Event:FireServer("Teleport", place);
+end;
+function claimPlaytime(val)
+	FrameworkRemote.Function:InvokeServer("ClaimPlaytime", val);
+end;
+function usePotion(potion, tier)
+	FrameworkRemote:WaitForChild("Event"):FireServer("UsePotion", potion, tier);
+end;
+function useGoldenOrb()
+	FrameworkRemote.Event:FireServer("UseGoldenOrb");
+end;
+function hatchEgg(egg)
+	FrameworkRemote.Event:FireServer("HatchEgg", egg, 5);
+end;
+function equipBestPet()
+	FrameworkRemote.Event:FireServer("EquipBestPets");
+end;
+function claimChest(chest)
+	FrameworkRemote.Event:FireServer("ClaimChest", chest);
+end;
+function claimAllChest()
+	for i, v in pairs((game:GetService("ReplicatedStorage")).Assets.Chests:GetChildren()) do
+		if string.find(v.Name, "Chest") then
+			claimChest(v.Name);
+		end
+	end;
+end;
+local eggList = {};
+for i, v in pairs((game:GetService("ReplicatedStorage")).Assets.Eggs:GetChildren()) do
+	if string.find(v.Name, " Egg") and (not string.find(v.Name, "Golden")) then
+		table.insert(eggList, v.Name);
+	end;
+end;
+PetsSection = Tabs.PetsTab:Section({
+    Title = "Pets",
+    TextXAlignment = "Left"
+});
+SelectedEggDropdown = Tabs.PetsTab:Dropdown({
+	Title = "Choose Egg",
+	Values = eggList,
+	Value = eggList[1],
+	Callback = function(option)
+		_G.SelectedEgg = option;
+	end
+});
+AutoOpenEggToggle = Tabs.PetsTab:Toggle({
+	Title = "Auto Open Egg",
+	Value = false,
+	Callback = function(state)
+		_G.Settings.Eggs["Auto Open Egg"] = state;
+	end
+});
+spawn(function()
+	while wait() do
+		if _G.Settings.Eggs["Auto Open Egg"] then
+			hatchEgg(_G.SelectedEgg);
+		end;
+	end;
+end);
+LocalPlayerSection = Tabs.LocalPlayerTab:Section({
+    Title = "Local Player",
+    TextXAlignment = "Left"
+});
+SpeedPlayerSlider = Tabs.LocalPlayerTab:Slider({
+	Title = "Speed Player",
+    Value = {
+        Default = 50,
+        Min = 16,
+        Max = 200,
+    },
+	Step = 1,
+	Callback = function(state)
+		_G.SpeedPlayer = state;
+	end
+});
+SetSpeedPlayerToggle = Tabs.LocalPlayerTab:Toggle({
+	Title = "Set Speed Player",
+	Value = false,
+	Callback = function(state)
+		_G.SetSpeedPlayer = state;
+	end
+});
+spawn(function()
+	while wait() do
+		if _G.SetSpeedPlayer then
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.SpeedPlayer;
+		end;
+	end;
+end);
+JumpPlayerSlider = Tabs.LocalPlayerTab:Slider({
+	Title = "Jump Player",
+    Value = {
+        Default = 300,
+        Min = 50,
+        Max = 1000,
+    },
+	Step = 1,
+	Callback = function(state)
+		_G.JumpPlayer = state;
+	end
+});
+SetJumpPlayerToggle = Tabs.LocalPlayerTab:Toggle({
+	Title = "Set Jump Player",
+	Value = false,
+	Callback = function(state)
+		_G.SetJumpPlayer = state;
+	end
+});
+spawn(function()
+	while wait() do
+		if _G.SetJumpPlayer then
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.SpeedPlayer;
+		end;
+	end;
+end);
+InfiniteJumpToggle = Tabs.LocalPlayerTab:Toggle({
+	Title = "Infinite Jump",
+	Value = false,
+	Callback = function(state)
+		_G.InfiniteJump = state;
+	end
+});
+(game:GetService("UserInputService")).JumpRequest:Connect(function()
+	if _G.InfiniteJump and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+		(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")):ChangeState(Enum.HumanoidStateType.Jumping);
+	end;
+end);
+NoClipToggle = Tabs.LocalPlayerTab:Toggle({
+	Title = "No Clip",
+	Value = false,
+	Callback = function(state)
+		_G.NoClip = state;
+	end
+});
+(game:GetService("RunService")).Stepped:Connect(function()
+	if _G.NoClip then
+		for _, part in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if part:IsA("BasePart") and part.CanCollide == true then
+				part.CanCollide = false;
+			end;
+		end;
+	end;
+end);
+MiscTabSection = Tabs.MiscTab:Section({
+    Title = "Misc",
+    TextXAlignment = "Left"
+});
+ClaimAllChestButton = Tabs.MiscTab:Button({
+	Title = "Claim All Chest",
+	Callback = function()
+		claimAllChest();
+	end
+});
+ServerTabSection = Tabs.ServerTab:Section({
+    Title = "Server",
+    TextXAlignment = "Left"
+});
+RejoinServerButton = Tabs.ServerTab:Button({
+	Title = "Rejoin Server",
+	Callback = function()
+		(game:GetService("TeleportService")):Teleport(game.PlaceId);
+	end
+});
+ServerHopButton = Tabs.ServerTab:Button({
+	Title = "Server Hop",
+	Callback = function()
+		local module = (loadstring(game:HttpGet("https://raw.githubusercontent.com/raw-scriptpastebin/FE/main/Server_Hop_Settings")))();
+		module:Teleport(game.PlaceId);
+	end
+});
