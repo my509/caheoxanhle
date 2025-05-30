@@ -1,6 +1,4 @@
 -- discord.gg/dztPz6bn
-Key =
-loadstring(game:HttpGet("https://raw.githubusercontent.com/my509/t-ng-h-p-/refs/heads/main/Key%20super%20exere"))()
 
 shared.LoaderTitle = "Caheoxanhle";
 shared.LoaderKeyFrames = {
@@ -21,6 +19,9 @@ shared.LoaderKeyFrames = {
         100
     }
 };
+   Key=
+loadstring(game:HttpGet("https://raw.githubusercontent.com/my509/t-ng-h-p-/refs/heads/main/Key%20super%20exere"))()
+
 local v2 = {
     LoaderData = {
         Name = shared.LoaderTitle or "A Loader",
